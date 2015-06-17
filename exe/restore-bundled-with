@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'restore_bundled_with'
+require 'restore_bundled_with/cli'
+RestoreBundledWith::CLI.start(ARGV)

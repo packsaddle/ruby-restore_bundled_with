@@ -1,5 +1,5 @@
 require 'restore_bundled_with/version'
 
-module RestoreBundledWith
+module RestoreBundledWith  
   # Your code goes here...
 end

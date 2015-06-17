@@ -1,6 +1,6 @@
 #!/bin/bash
 set -v
-if [ -n "${TRAVIS_PULL_REQUEST}" ] && [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
+if [ -n "${TRAVIS_PULL_REQUEST}" ] && [ "${TRAVIS_PULL_REQUEST}" != "false" ] && [ "${TRAVIS_JOB_NUMBER: -1}" == "1" ]; then
   # Travis-CI
   #
   # git clone --depth=50 \

@@ -1,5 +1,6 @@
 #!/bin/bash
 set -v
+echo ${TRAVIS_JOB_NUMBER: -1}
 if [ -n "${TRAVIS_PULL_REQUEST}" ] && [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
   # Travis-CI
   #

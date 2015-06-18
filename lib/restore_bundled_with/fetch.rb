@@ -1,5 +1,5 @@
 module RestoreBundledWith
   class Fetch
-    LOCKFILE = 'Gemfile.lock'
+    LOCK_FILE = 'Gemfile.lock'
   end
 end

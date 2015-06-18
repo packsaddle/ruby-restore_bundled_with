@@ -16,7 +16,7 @@ module RestoreBundledWith
     desc 'restore', 'Restore BUNDLED WITH on Gemfile.lock'
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
-    option :lockfile, type: :string, default: Fetch::LOCKFILE
+    option :lockfile, type: :string, default: Fetch::LOCK_FILE
     def restore
       setup_logger(options)
     rescue StandardError => e

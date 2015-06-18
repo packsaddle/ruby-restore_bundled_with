@@ -33,7 +33,7 @@ module RestoreBundledWith
       setup_logger(options)
 
       data = read_data(options)
-      puts data
+      puts Trim.new(data).trim
     rescue StandardError => e
       suggest_messages(options)
       raise e

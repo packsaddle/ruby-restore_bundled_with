@@ -2,6 +2,8 @@ module RestoreBundledWith
   class Fetch
     LOCK_FILE = 'Gemfile.lock'
     REF = 'HEAD'
+    # REGEX_PICK = /^(?<pick>\n^BUNDLED WITH.*\n.+\n)/
+    # git.cat_file trims last \n?
     REGEX_PICK = /^(?<pick>\n^BUNDLED WITH.*\n.+)/
     def initialize(file = LOCK_FILE, ref = REF, git_path = '.', git_options = {})
       @file = file

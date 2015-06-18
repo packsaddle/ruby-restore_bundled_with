@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Restore BUNDLED WITH section on Gemfile.lock'
   spec.description   = 'TODO: Write a longer description or delete this line.'
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = 'https://github.com/packsaddle/ruby-restore_bundled_with'
   spec.license       = 'MIT'
 
   spec.files         = \

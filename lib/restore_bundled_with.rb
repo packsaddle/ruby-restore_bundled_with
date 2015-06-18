@@ -1,3 +1,4 @@
+require 'git'
 require 'logger'
 
 require 'restore_bundled_with/error'

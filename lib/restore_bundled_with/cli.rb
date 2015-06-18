@@ -24,7 +24,40 @@ module RestoreBundledWith
       raise e
     end
 
+    desc 'trim', 'Trim BUNDLED WITH'
+    option :data
+    option :file
+    option :debug, type: :boolean, default: false
+    option :verbose, type: :boolean, default: false
+    def trim
+      setup_logger(options)
+
+      data = read_data(options)
+      puts data
+    rescue StandardError => e
+      suggest_messages(options)
+      raise e
+    end
+
     no_commands do
+      def read_data(options)
+        data = \
+          if options[:data]
+            options[:data]
+          elsif options[:file]
+            File.read(options[:file])
+          elsif !$stdin.tty?
+            ARGV.clear
+            ARGF.read
+          end
+
+        logger.info('input data')
+        logger.info(data)
+        fail NoInputError if !data || data.empty?
+
+        data
+      end
+
       def logger
         ::RestoreBundledWith.logger
       end

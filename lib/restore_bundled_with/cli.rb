@@ -39,6 +39,20 @@ module RestoreBundledWith
       raise e
     end
 
+    desc 'fetch', 'Fetch BUNDLED WITH section'
+    option :lockfile, type: :string, default: Fetch::LOCK_FILE
+    option :ref, type: :string, default: Fetch::REF
+    option :debug, type: :boolean, default: false
+    option :verbose, type: :boolean, default: false
+    def fetch
+      setup_logger(options)
+
+      puts Fetch.new(options[:lockfile], options[:ref]).pick
+    rescue StandardError => e
+      suggest_messages(options)
+      raise e
+    end
+
     no_commands do
       def read_data(options)
         data = \

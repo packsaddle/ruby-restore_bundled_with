@@ -36,4 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '>= 0'
   spec.add_development_dependency 'rake', '>= 0'
   spec.add_development_dependency 'test-unit', '>= 0'
+  spec.add_development_dependency 'test-unit-rr', '>= 0'
 end

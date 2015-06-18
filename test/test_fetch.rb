@@ -7,7 +7,9 @@ module RestoreBundledWith
         lock_file_path = 'Gemfile.lock'
         ref = 'HEAD'
         # FIXME: rstrip ?
-        lock_file_contents = File.read('./test/fixtures/v1-9-example1.lock').rstrip
+        lock_file_contents = File
+                             .read('./test/fixtures/v1-9-example1.lock')
+                             .rstrip
         fetch = Fetch.new(lock_file_path, ref)
         stub(fetch).target_file_contents { lock_file_contents }
         expected = ''
@@ -19,11 +21,15 @@ module RestoreBundledWith
         lock_file_path = 'Gemfile.lock'
         ref = 'HEAD'
         # FIXME: rstrip ?
-        lock_file_contents = File.read('./test/fixtures/v1-10-example1.lock').rstrip
+        lock_file_contents = File
+                             .read('./test/fixtures/v1-10-example1.lock')
+                             .rstrip
         fetch = Fetch.new(lock_file_path, ref)
         stub(fetch).target_file_contents { lock_file_contents }
         # FIXME: rstrip ?
-        expected = File.read('./test/fixtures/v1-10-example1-block.txt').rstrip
+        expected = File
+                   .read('./test/fixtures/v1-10-example1-block.txt')
+                   .rstrip
         assert do
           fetch.pick == expected
         end

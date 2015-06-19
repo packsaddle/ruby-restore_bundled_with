@@ -6,7 +6,11 @@ module RestoreBundledWith
     end
 
     def insert
-      @body + @section + "\n"
+      if @section && !@section.empty?
+        @body + @section + "\n"
+      else
+        @body
+      end
     end
   end
 end

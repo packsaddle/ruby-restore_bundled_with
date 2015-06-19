@@ -3,7 +3,7 @@ require 'logger'
 
 require 'restore_bundled_with/error'
 require 'restore_bundled_with/fetch'
-require 'restore_bundled_with/trim'
+require 'restore_bundled_with/delete'
 require 'restore_bundled_with/version'
 
 module RestoreBundledWith

@@ -24,16 +24,16 @@ module RestoreBundledWith
       raise e
     end
 
-    desc 'trim', 'Trim BUNDLED WITH'
+    desc 'delete', 'Delete BUNDLED WITH'
     option :data
     option :file
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
-    def trim
+    def delete
       setup_logger(options)
 
       data = read_data(options)
-      puts Trim.new(data).trim
+      puts Delete.new(data).delete
     rescue StandardError => e
       suggest_messages(options)
       raise e

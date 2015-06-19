@@ -1,6 +1,7 @@
 module RestoreBundledWith
   class Insert
-    def initialize(body, section, new_line = "\n")
+    NEW_LINE = "\n"
+    def initialize(body, section, new_line = NEW_LINE)
       @body = body
       @section = section
       @new_line = new_line

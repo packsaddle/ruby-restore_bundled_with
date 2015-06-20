@@ -4,10 +4,11 @@ var fs = require('fs');
 var execSync = require('child_process').execSync;
 var conventionalChangelog = require('conventional-changelog');
 
-var version = "" + execSync('ruby -e \'require "./lib/restore_bundled_with/version"; print RestoreBundledWith::VERSION\'');
+var repo = 'https://github.com/packsaddle/ruby-restore_bundled_with'
+var version = "" + execSync('bundle exec exe/restore-bundled-with version --digit');
 
 conventionalChangelog({
-  repository: 'https://github.com/packsaddle/ruby-restore_bundled_with',
+  repository: repo,
   version: version,
   file: 'CHANGELOG.md'
 }, function(err, log) {

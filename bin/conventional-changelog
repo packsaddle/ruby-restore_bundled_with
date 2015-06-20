@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var execSync = require('child_process').execSync;
+var conventionalChangelog = require('conventional-changelog');
+
+var version = "" + execSync('ruby -e \'require "./lib/restore_bundled_with/version"; print RestoreBundledWith::VERSION\'');
+
+conventionalChangelog({
+  repository: 'https://github.com/packsaddle/ruby-restore_bundled_with',
+  version: version,
+  file: 'CHANGELOG.md'
+}, function(err, log) {
+  fs.writeFile('CHANGELOG.md', log, function(err){
+    console.log(err);
+  });
+  console.log('Here is your changelog!', log);
+});

@@ -45,6 +45,9 @@ BUNDLED WITH
 Execute `bundle update` by Bundler v1.10.3.
 
 ```
+$ bundle update
+(update)
+
 $ git diff
 (snip)
 @@ -291,4 +296,4 @@ DEPENDENCIES
@@ -58,7 +61,11 @@ $ git diff
 Then, execute `restore-bundled-with`.
 
 ```
+$ restore-bundled-with
+(restore BUNDLED WITH section)
+
 $ git diff
+(no diff)
 ```
 
 There is no diff, because this restores `BUNDLED WITH` from git repository.
@@ -78,6 +85,9 @@ BUNDLED WITH
 Execute `bundle update` by Bundler v1.9.9.
 
 ```
+$ bundle update
+(update)
+
 $ git diff
 (snip)
 @@ -289,6 +299,3 @@ DEPENDENCIES
@@ -92,7 +102,11 @@ $ git diff
 Then, execute `restore-bundled-with`.
 
 ```
+$ restore-bundled-with
+(restore BUNDLED WITH section)
+
 $ git diff
+(no diff)
 ```
 
 There is no diff, because this restores `BUNDLED WITH` from git repository.

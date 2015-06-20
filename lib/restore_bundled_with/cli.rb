@@ -8,9 +8,13 @@ module RestoreBundledWith
 
     desc 'version', 'Show the RestoreBundledWith version'
     map %w(-v --version) => :version
-
+    option :digit, type: :boolean, default: false
     def version
-      puts "RestoreBundledWith version #{::RestoreBundledWith::VERSION}"
+      if options[:digit]
+        print ::RestoreBundledWith::VERSION
+      else
+        puts "RestoreBundledWith version #{::RestoreBundledWith::VERSION}"
+      end
     end
 
     desc 'restore', 'Restore BUNDLED WITH on Gemfile.lock'

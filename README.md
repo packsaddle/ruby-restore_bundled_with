@@ -70,6 +70,39 @@ There is no diff, because this restores `BUNDLED WITH` from git repository.
 
 ### Old Bundler (v1.9) Case
 
+```text
+$ cat Gemfile.lock
+(snip)
+  unicorn-worker-killer
+  webmock
+
+BUNDLED WITH
+   1.10.2
+```
+
+Execute `bundle update` by Bundler v1.9.9.
+
+```
+$ git diff
+(snip)
+@@ -289,6 +299,3 @@ DEPENDENCIES
+   unicorn
+   unicorn-worker-killer
+   webmock
+-
+-BUNDLED WITH
+-   1.10.2
+```
+
+Then, execute `restore-bundled-with`.
+
+```
+$ git diff
+```
+
+There is no diff, because this restores `BUNDLED WITH` from git repository.
+
+
 ## Usage
 
 ```text

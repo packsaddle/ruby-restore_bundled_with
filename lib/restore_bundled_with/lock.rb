@@ -5,12 +5,27 @@ module RestoreBundledWith
     NEW_LINE = "\n"
     REGEX_BUNDLED_WITH = /^\n^BUNDLED WITH.*\n.+\n/
 
+    LOCK_FILE = 'Gemfile.lock'
+    REF = 'HEAD'
+    GIT_PATH = '.'
+    GIT_OPTIONS = {}
+
     def self.insert(text, section, new_line = NEW_LINE)
       if section && !section.empty?
         new(text + section + new_line)
       else
         new(text)
       end
+    end
+
+    def self.fetch(
+      file = LOCK_FILE,
+      ref = REF,
+      git_path = GIT_PATH,
+      git_options = GIT_OPTIONS
+    )
+      text = Git.open(git_path, git_options).cat_file("#{ref}:#{file}")
+      new(text)
     end
 
     def initialize(text)

@@ -3,8 +3,8 @@ require 'logger'
 
 require 'restore_bundled_with/error'
 require 'restore_bundled_with/fetch'
-require 'restore_bundled_with/git'
 require 'restore_bundled_with/lock'
+require 'restore_bundled_with/repository'
 require 'restore_bundled_with/restore'
 require 'restore_bundled_with/version'
 

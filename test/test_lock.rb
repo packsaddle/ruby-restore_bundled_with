@@ -38,5 +38,22 @@ module RestoreBundledWith
         end
       end
     end
+
+    sub_test_case '#pick' do
+      test 'v1.9 lock file' do
+        lock_file_contents = File.read('./test/fixtures/v1-9-example1.lock')
+        expected = ''
+        assert do
+          Lock.new(lock_file_contents).pick == expected
+        end
+      end
+      test 'v1.10 lock file' do
+        lock_file_contents = File.read('./test/fixtures/v1-10-example1.lock')
+        expected = File.read('./test/fixtures/v1-10-example1-block.txt')
+        assert do
+          Lock.new(lock_file_contents).pick == expected
+        end
+      end
+    end
   end
 end

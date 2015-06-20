@@ -4,6 +4,7 @@ module RestoreBundledWith
 
     NEW_LINE = "\n"
     REGEX_BUNDLED_WITH = /^\n^BUNDLED WITH.*\n.+\n/
+    REGEX_PICK = /^(?<pick>\n^BUNDLED WITH.*\n.+\n)/
 
     def self.insert(text, section, new_line = NEW_LINE)
       if section && !section.empty?
@@ -20,6 +21,15 @@ module RestoreBundledWith
     # "\n\nBUNDLED WITH\n   1.10.4\n" => "\n"
     def delete_bundled_with
       self.class.new(body.sub(REGEX_BUNDLED_WITH) { '' })
+    end
+
+    def pick
+      match = REGEX_PICK.match(body)
+      if match
+        match[:pick]
+      else
+        ''
+      end
     end
 
     def to_s

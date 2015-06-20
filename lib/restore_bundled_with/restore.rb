@@ -6,7 +6,7 @@ module RestoreBundledWith
       ref = Fetch::REF,
       git_path = Fetch::GIT_PATH,
       git_options = Fetch::GIT_OPTIONS,
-      new_line = LOCK::NEW_LINE
+      new_line = Lock::NEW_LINE
     )
       @data = data
       @lockfile = lockfile

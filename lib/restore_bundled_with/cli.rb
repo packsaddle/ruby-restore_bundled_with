@@ -33,7 +33,7 @@ module RestoreBundledWith
       params = options.dup
       params[:file] = options[:lockfile] if !options[:data] && !options[:file]
       data = read_data(params)
-      lockfile = Restore.new(
+      lock_file = Lock.restore(
         data,
         options[:lockfile],
         options[:ref],
@@ -41,8 +41,7 @@ module RestoreBundledWith
         options[:git_options],
         options[:new_line]
       )
-      lockfile.restore
-      lockfile.write
+      lock_file.write_to(options[:lockfile])
     rescue StandardError => e
       suggest_messages(options)
       raise e
@@ -76,7 +75,10 @@ module RestoreBundledWith
       setup_logger(options)
       lock_file = Repository
                   .new(options[:git_path], options[:git_options])
-                  .fetch_file(options[:lockfile], options[:ref], options[:new_line])
+                  .fetch_file(
+                    options[:lockfile],
+                    options[:ref],
+                    options[:new_line])
       puts Lock
         .new(lock_file)
         .pick

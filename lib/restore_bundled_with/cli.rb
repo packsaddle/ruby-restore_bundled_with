@@ -18,11 +18,31 @@ module RestoreBundledWith
     end
 
     desc 'restore', 'Restore BUNDLED WITH on Gemfile.lock'
+    option :data
+    option :file
+    option :lockfile, type: :string, default: Fetch::LOCK_FILE
+    option :ref, type: :string, default: Fetch::REF
+    option :git_path, type: :string, default: Fetch::GIT_PATH
+    option :git_options, type: :hash, default: Fetch::GIT_OPTIONS
+    option :new_line, type: :string, default: Insert::NEW_LINE
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
-    option :lockfile, type: :string, default: Fetch::LOCK_FILE
     def restore
       setup_logger(options)
+
+      params = options
+      params[:file] = options[:lockfile] if !options[:data] && !options[:file]
+      data = read_data(params)
+      lockfile = Restore.new(
+        data,
+        options[:lockfile],
+        options[:ref],
+        options[:git_path],
+        options[:git_options],
+        options[:new_line]
+      )
+      lockfile.restore
+      lockfile.write
     rescue StandardError => e
       suggest_messages(options)
       raise e

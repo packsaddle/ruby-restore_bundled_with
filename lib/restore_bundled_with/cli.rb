@@ -42,12 +42,20 @@ module RestoreBundledWith
     desc 'fetch', 'Fetch BUNDLED WITH section'
     option :lockfile, type: :string, default: Fetch::LOCK_FILE
     option :ref, type: :string, default: Fetch::REF
+    option :git_path, type: :string, default: Fetch::GIT_PATH
+    option :git_options, type: :hash, default: Fetch::GIT_OPTIONS
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
     def fetch
       setup_logger(options)
 
-      puts Fetch.new(options[:lockfile], options[:ref]).pick
+      puts Fetch
+        .new(
+          options[:lockfile],
+          options[:ref],
+          options[:git_path],
+          options[:git_options])
+        .pick
     rescue StandardError => e
       suggest_messages(options)
       raise e

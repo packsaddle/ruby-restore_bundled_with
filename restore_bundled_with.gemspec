@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['o.gata.ken@gmail.com']
 
   spec.summary       = 'Restore BUNDLED WITH section on Gemfile.lock'
-  spec.description   = 'TODO: Write a longer description or delete this line.'
+  spec.description   = 'Restore BUNDLED WITH section on Gemfile.lock'
   spec.homepage      = 'https://github.com/packsaddle/ruby-restore_bundled_with'
   spec.license       = 'MIT'
 

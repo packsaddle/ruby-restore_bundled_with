@@ -24,7 +24,7 @@ module RestoreBundledWith
     option :ref, type: :string, default: Fetch::REF
     option :git_path, type: :string, default: Fetch::GIT_PATH
     option :git_options, type: :hash, default: Fetch::GIT_OPTIONS
-    option :new_line, type: :string, default: Insert::NEW_LINE
+    option :new_line, type: :string, default: Lock::NEW_LINE
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
     def restore

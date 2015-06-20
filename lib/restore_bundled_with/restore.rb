@@ -6,7 +6,7 @@ module RestoreBundledWith
       ref = Fetch::REF,
       git_path = Fetch::GIT_PATH,
       git_options = Fetch::GIT_OPTIONS,
-      new_line = Insert::NEW_LINE
+      new_line = LOCK::NEW_LINE
     )
       @data = data
       @lockfile = lockfile
@@ -25,7 +25,7 @@ module RestoreBundledWith
                   @git_path,
                   @git_options)
                 .pick
-      @data = Insert.new(data, section, @new_line).insert
+      @data = Lock.insert(data, section, @new_line).to_s
     end
 
     def write

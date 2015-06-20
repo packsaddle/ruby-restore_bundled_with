@@ -17,7 +17,7 @@ module RestoreBundledWith
       end
     end
 
-    desc 'restore', 'Restore BUNDLED WITH on Gemfile.lock'
+    desc 'restore', 'Restore BUNDLED WITH section in Gemfile.lock'
     option :data
     option :file
     option :lockfile, type: :string, default: Repository::LOCK_FILE
@@ -48,7 +48,7 @@ module RestoreBundledWith
     end
     default_command :restore
 
-    desc 'delete', 'Delete BUNDLED WITH'
+    desc 'delete', 'Delete BUNDLED WITH section'
     option :data
     option :file
     option :debug, type: :boolean, default: false

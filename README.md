@@ -102,10 +102,10 @@ There is no diff, because this restores `BUNDLED WITH` from git repository.
 
 ```text
 Commands:
-  restore-bundled-with delete          # Delete BUNDLED WITH
+  restore-bundled-with delete          # Delete BUNDLED WITH section
   restore-bundled-with fetch           # Fetch BUNDLED WITH section
   restore-bundled-with help [COMMAND]  # Describe available commands or one specific command
-  restore-bundled-with restore         # Restore BUNDLED WITH on Gemfile.lock
+  restore-bundled-with restore         # Restore BUNDLED WITH section in Gemfile.lock
   restore-bundled-with version         # Show the RestoreBundledWith version
 
 Usage:
@@ -126,7 +126,7 @@ Options:
   [--debug], [--no-debug]
   [--verbose], [--no-verbose]
 
-Restore BUNDLED WITH on Gemfile.lock
+Restore BUNDLED WITH section in Gemfile.lock
 ```
 
 ## Installation

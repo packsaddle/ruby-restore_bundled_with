@@ -25,6 +25,8 @@ RestoreBundledWith solves these conflicts.
       .reject { |f| f.match(%r{^(test|spec|features)/}) }
       .reject do |f|
       [
+        '.rubocop.yml',
+        '.rubocop_todo.yml',
         '.travis.yml',
         'circle.yml',
         '.tachikoma.yml',

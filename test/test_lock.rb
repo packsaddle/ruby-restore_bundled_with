@@ -12,10 +12,7 @@ module RestoreBundledWith
       end
       test 'v1.10 lock file' do
         deleted = File.read('./test/fixtures/v1-10-example1-deleted.lock')
-        # FIXME: rstrip ?
-        section = File
-                  .read('./test/fixtures/v1-10-example1-block.txt')
-                  .rstrip
+        section = File.read('./test/fixtures/v1-10-example1-block.txt')
         lock_file = File.read('./test/fixtures/v1-10-example1.lock')
         assert do
           Lock.insert(deleted, section).to_s == lock_file

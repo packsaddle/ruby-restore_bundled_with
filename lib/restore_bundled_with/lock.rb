@@ -2,13 +2,12 @@ module RestoreBundledWith
   class Lock
     attr_reader :body
 
-    NEW_LINE = "\n"
     REGEX_BUNDLED_WITH = /^\n^BUNDLED WITH.*\n.+\n/
     REGEX_PICK = /^(?<pick>\n^BUNDLED WITH.*\n.+\n)/
 
-    def self.insert(text, section, new_line = NEW_LINE)
+    def self.insert(text, section)
       if section && !section.empty?
-        new(text + section + new_line)
+        new(text + section)
       else
         new(text)
       end

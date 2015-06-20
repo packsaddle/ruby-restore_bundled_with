@@ -2,7 +2,7 @@ module RestoreBundledWith
   class Lock
     attr_reader :body
 
-    REGEX_BUNDLED_WITH = /^(?<pick>\n^BUNDLED WITH.*\n.+\n)/
+    REGEX_BUNDLED_WITH = /^(?<pick>(?:\r\n|\r|\n)^BUNDLED WITH.*(?:\r\n|\r|\n).+(?:\r\n|\r|\n))/
 
     def self.insert(text, section)
       if section && !section.empty?

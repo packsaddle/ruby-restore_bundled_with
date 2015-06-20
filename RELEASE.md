@@ -5,7 +5,7 @@
 * Bump version `lib/restore_bundled_with/version.rb`
 * Update changelog
     * `$ npm install`
-    * `$ bin/conventional-changelog`
+    * `$ npm run changelog`
     
 ## Release
 

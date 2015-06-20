@@ -69,17 +69,16 @@ module RestoreBundledWith
     option :ref, type: :string, default: Repository::REF
     option :git_path, type: :string, default: Repository::GIT_PATH
     option :git_options, type: :hash, default: Repository::GIT_OPTIONS
+    option :new_line, type: :string, default: Repository::NEW_LINE
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
     def fetch
       setup_logger(options)
-
-      puts Fetch
-        .new(
-          options[:lockfile],
-          options[:ref],
-          options[:git_path],
-          options[:git_options])
+      lock_file = Repository
+                  .new(options[:git_path], options[:git_options])
+                  .fetch_file(options[:lockfile], options[:ref], options[:new_line])
+      puts Lock
+        .new(lock_file)
         .pick
     rescue StandardError => e
       suggest_messages(options)

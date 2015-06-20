@@ -20,11 +20,11 @@ module RestoreBundledWith
     desc 'restore', 'Restore BUNDLED WITH on Gemfile.lock'
     option :data
     option :file
-    option :lockfile, type: :string, default: Fetch::LOCK_FILE
-    option :ref, type: :string, default: Fetch::REF
-    option :git_path, type: :string, default: Fetch::GIT_PATH
-    option :git_options, type: :hash, default: Fetch::GIT_OPTIONS
-    option :new_line, type: :string, default: Insert::NEW_LINE
+    option :lockfile, type: :string, default: Repository::LOCK_FILE
+    option :ref, type: :string, default: Repository::REF
+    option :git_path, type: :string, default: Repository::GIT_PATH
+    option :git_options, type: :hash, default: Repository::GIT_OPTIONS
+    option :new_line, type: :string, default: Repository::NEW_LINE
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
     def restore
@@ -33,7 +33,7 @@ module RestoreBundledWith
       params = options.dup
       params[:file] = options[:lockfile] if !options[:data] && !options[:file]
       data = read_data(params)
-      lockfile = Restore.new(
+      lock_file = Lock.restore(
         data,
         options[:lockfile],
         options[:ref],
@@ -41,8 +41,7 @@ module RestoreBundledWith
         options[:git_options],
         options[:new_line]
       )
-      lockfile.restore
-      lockfile.write
+      lock_file.write_to(options[:lockfile])
     rescue StandardError => e
       suggest_messages(options)
       raise e
@@ -58,28 +57,30 @@ module RestoreBundledWith
       setup_logger(options)
 
       data = read_data(options)
-      puts Delete.new(data).delete
+      puts Lock.new(data).delete_bundled_with
     rescue StandardError => e
       suggest_messages(options)
       raise e
     end
 
     desc 'fetch', 'Fetch BUNDLED WITH section'
-    option :lockfile, type: :string, default: Fetch::LOCK_FILE
-    option :ref, type: :string, default: Fetch::REF
-    option :git_path, type: :string, default: Fetch::GIT_PATH
-    option :git_options, type: :hash, default: Fetch::GIT_OPTIONS
+    option :lockfile, type: :string, default: Repository::LOCK_FILE
+    option :ref, type: :string, default: Repository::REF
+    option :git_path, type: :string, default: Repository::GIT_PATH
+    option :git_options, type: :hash, default: Repository::GIT_OPTIONS
+    option :new_line, type: :string, default: Repository::NEW_LINE
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
     def fetch
       setup_logger(options)
-
-      puts Fetch
-        .new(
-          options[:lockfile],
-          options[:ref],
-          options[:git_path],
-          options[:git_options])
+      lock_file = Repository
+                  .new(options[:git_path], options[:git_options])
+                  .fetch_file(
+                    options[:lockfile],
+                    options[:ref],
+                    options[:new_line])
+      puts Lock
+        .new(lock_file)
         .pick
     rescue StandardError => e
       suggest_messages(options)

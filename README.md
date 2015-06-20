@@ -127,33 +127,6 @@ Options:
   [--verbose], [--no-verbose]
 
 Restore BUNDLED WITH on Gemfile.lock
-
-Usage:
-  restore-bundled-with delete
-
-Options:
-  [--data=DATA]
-  [--file=FILE]
-  [--debug], [--no-debug]
-  [--verbose], [--no-verbose]
-
-Delete BUNDLED WITH
-
-Usage:
-  restore-bundled-with fetch
-
-Options:
-  [--lockfile=LOCKFILE]
-                               # Default: Gemfile.lock
-  [--ref=REF]
-                               # Default: HEAD
-  [--git-path=GIT_PATH]
-                               # Default: .
-  [--git-options=key:value]
-  [--debug], [--no-debug]
-  [--verbose], [--no-verbose]
-
-Fetch BUNDLED WITH section
 ```
 
 ## Installation

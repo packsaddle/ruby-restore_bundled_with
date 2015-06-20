@@ -22,5 +22,21 @@ module RestoreBundledWith
         end
       end
     end
+
+    sub_test_case '#delete_bundled_with' do
+      test 'v1.9 lock file' do
+        lock_file = File.read('./test/fixtures/v1-9-example1.lock')
+        assert do
+          Lock.new(lock_file).delete_bundled_with == Lock.new(lock_file)
+        end
+      end
+      test 'v1.10 lock file' do
+        lock_file = File.read('./test/fixtures/v1-10-example1.lock')
+        deleted = File.read('./test/fixtures/v1-10-example1-deleted.lock')
+        assert do
+          Lock.new(lock_file).delete_bundled_with == Lock.new(deleted)
+        end
+      end
+    end
   end
 end

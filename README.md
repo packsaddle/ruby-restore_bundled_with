@@ -1,8 +1,165 @@
 # RestoreBundledWith
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/restore_bundled_with`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Gem Version](http://img.shields.io/gem/v/restore_bundled_with.svg?style=flat)](http://badge.fury.io/rb/restore_bundled_with)
+[![Build Status](http://img.shields.io/travis/packsaddle/ruby-restore_bundled_with/master.svg?style=flat)](https://travis-ci.org/packsaddle/ruby-restore_bundled_with)
 
-TODO: Delete this and the text above, and describe your gem
+Restore `BUNDLED WITH` section in `Gemfile.lock` from git repository.
+
+```text
+# Gemfile.lock
+PATH
+  remote: .
+  specs:
+(snip)
+
+BUNDLED WITH
+   1.10.4
+```
+
+## Description
+
+Bundler `v1.10.0 or higher` tracks Bundler version in lockfile.
+
+We should use latest Bundler, but sometimes we are afraid we have to use older Bundler.
+
+We use Different version of Bundler between a project and a local machine.
+
+In addition, Bundler `v1.9.x` removes `BUNDLED WITH` section.
+
+*RestoreBundledWith* solves these conflicts.
+
+*RestoreBundledWith* restores `BUNDLED WITH` section from git repository.
+
+* [Track Bundler version in lockfile by smlance #3485 bundler/bundler](https://github.com/bundler/bundler/pull/3485)
+* [Do not update BUNDLED WITH if no other changes to the lock happened #3697 bundler/bundler](https://github.com/bundler/bundler/issues/3697)
+
+## Example
+
+### Newer Bundler Case
+
+```text
+$ cat Gemfile.lock
+(snip)
+  unicorn-worker-killer
+  webmock
+
+BUNDLED WITH
+   1.10.2
+```
+
+Execute `bundle update` by Bundler v1.10.3.
+
+```
+$ git diff
+(snip)
+@@ -291,4 +296,4 @@ DEPENDENCIES
+   webmock
+
+ BUNDLED WITH
+-   1.10.2
++   1.10.3
+```
+
+Then, execute `restore-bundled-with`.
+
+```
+$ git diff
+```
+
+There is no diff, because this restores `BUNDLED WITH` from git repository.
+
+### Old Bundler (v1.9) Case
+
+```text
+$ cat Gemfile.lock
+(snip)
+  unicorn-worker-killer
+  webmock
+
+BUNDLED WITH
+   1.10.2
+```
+
+Execute `bundle update` by Bundler v1.9.9.
+
+```
+$ git diff
+(snip)
+@@ -289,6 +299,3 @@ DEPENDENCIES
+   unicorn
+   unicorn-worker-killer
+   webmock
+-
+-BUNDLED WITH
+-   1.10.2
+```
+
+Then, execute `restore-bundled-with`.
+
+```
+$ git diff
+```
+
+There is no diff, because this restores `BUNDLED WITH` from git repository.
+
+
+## Usage
+
+```text
+Commands:
+  restore-bundled-with delete          # Delete BUNDLED WITH
+  restore-bundled-with fetch           # Fetch BUNDLED WITH section
+  restore-bundled-with help [COMMAND]  # Describe available commands or one specific command
+  restore-bundled-with restore         # Restore BUNDLED WITH on Gemfile.lock
+  restore-bundled-with version         # Show the RestoreBundledWith version
+
+Usage:
+  restore-bundled-with restore
+
+Options:
+  [--data=DATA]
+  [--file=FILE]
+  [--lockfile=LOCKFILE]
+                               # Default: Gemfile.lock
+  [--ref=REF]
+                               # Default: HEAD
+  [--git-path=GIT_PATH]
+                               # Default: .
+  [--git-options=key:value]
+  [--new-line=NEW_LINE]
+                               # Default:
+  [--debug], [--no-debug]
+  [--verbose], [--no-verbose]
+
+Restore BUNDLED WITH on Gemfile.lock
+
+Usage:
+  restore-bundled-with delete
+
+Options:
+  [--data=DATA]
+  [--file=FILE]
+  [--debug], [--no-debug]
+  [--verbose], [--no-verbose]
+
+Delete BUNDLED WITH
+
+Usage:
+  restore-bundled-with fetch
+
+Options:
+  [--lockfile=LOCKFILE]
+                               # Default: Gemfile.lock
+  [--ref=REF]
+                               # Default: HEAD
+  [--git-path=GIT_PATH]
+                               # Default: .
+  [--git-options=key:value]
+  [--debug], [--no-debug]
+  [--verbose], [--no-verbose]
+
+Fetch BUNDLED WITH section
+```
 
 ## Installation
 
@@ -20,19 +177,15 @@ Or install it yourself as:
 
     $ gem install restore_bundled_with
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake rspec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/restore_bundled_with. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/packsaddle/ruby-restore_bundled_with. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License

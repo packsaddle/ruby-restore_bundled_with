@@ -19,15 +19,10 @@ BUNDLED WITH
 ## Description
 
 Bundler `v1.10.0 or higher` tracks Bundler version in lockfile.
-
 We should use latest Bundler, but sometimes we are afraid we have to use older Bundler.
-
 We use Different version of Bundler between a project and a local machine.
-
 In addition, Bundler `v1.9.x` removes `BUNDLED WITH` section.
-
 *RestoreBundledWith* solves these conflicts.
-
 *RestoreBundledWith* restores `BUNDLED WITH` section from git repository.
 
 * [Track Bundler version in lockfile by smlance #3485 bundler/bundler](https://github.com/bundler/bundler/pull/3485)

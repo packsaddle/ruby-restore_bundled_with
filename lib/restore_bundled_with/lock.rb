@@ -2,8 +2,7 @@ module RestoreBundledWith
   class Lock
     attr_reader :body
 
-    REGEX_BUNDLED_WITH = /^\n^BUNDLED WITH.*\n.+\n/
-    REGEX_PICK = /^(?<pick>\n^BUNDLED WITH.*\n.+\n)/
+    REGEX_BUNDLED_WITH = /^(?<pick>\n^BUNDLED WITH.*\n.+\n)/
 
     def self.insert(text, section)
       if section && !section.empty?
@@ -40,7 +39,7 @@ module RestoreBundledWith
     end
 
     def pick
-      match = REGEX_PICK.match(body)
+      match = REGEX_BUNDLED_WITH.match(body)
       if match
         match[:pick]
       else

@@ -20,10 +20,10 @@ module RestoreBundledWith
     desc 'restore', 'Restore BUNDLED WITH on Gemfile.lock'
     option :data
     option :file
-    option :lockfile, type: :string, default: Fetch::LOCK_FILE
-    option :ref, type: :string, default: Fetch::REF
-    option :git_path, type: :string, default: Fetch::GIT_PATH
-    option :git_options, type: :hash, default: Fetch::GIT_OPTIONS
+    option :lockfile, type: :string, default: Repository::LOCK_FILE
+    option :ref, type: :string, default: Repository::REF
+    option :git_path, type: :string, default: Repository::GIT_PATH
+    option :git_options, type: :hash, default: Repository::GIT_OPTIONS
     option :new_line, type: :string, default: Lock::NEW_LINE
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
@@ -65,10 +65,10 @@ module RestoreBundledWith
     end
 
     desc 'fetch', 'Fetch BUNDLED WITH section'
-    option :lockfile, type: :string, default: Fetch::LOCK_FILE
-    option :ref, type: :string, default: Fetch::REF
-    option :git_path, type: :string, default: Fetch::GIT_PATH
-    option :git_options, type: :hash, default: Fetch::GIT_OPTIONS
+    option :lockfile, type: :string, default: Repository::LOCK_FILE
+    option :ref, type: :string, default: Repository::REF
+    option :git_path, type: :string, default: Repository::GIT_PATH
+    option :git_options, type: :hash, default: Repository::GIT_OPTIONS
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
     def fetch

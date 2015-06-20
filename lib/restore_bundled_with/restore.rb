@@ -2,11 +2,11 @@ module RestoreBundledWith
   class Restore
     def initialize(
       data,
-      lockfile = Fetch::LOCK_FILE,
-      ref = Fetch::REF,
-      git_path = Fetch::GIT_PATH,
-      git_options = Fetch::GIT_OPTIONS,
-      new_line = Lock::NEW_LINE
+      lockfile = Repository::LOCK_FILE,
+      ref = Repository::REF,
+      git_path = Repository::GIT_PATH,
+      git_options = Repository::GIT_OPTIONS,
+      new_line = Repository::NEW_LINE
     )
       @data = data
       @lockfile = lockfile
@@ -18,14 +18,13 @@ module RestoreBundledWith
 
     def restore
       data = Lock.new(@data).delete_bundled_with.to_s
-      section = Fetch
-                .new(
-                  @lockfile,
-                  @ref,
-                  @git_path,
-                  @git_options)
+      lock_file = Repository
+                  .new(@git_path, @git_options)
+                  .fetch_file(@lockfile, @ref, @new_line)
+      section = Lock
+                .new(lock_file)
                 .pick
-      @data = Lock.insert(data, section, @new_line).to_s
+      @data = Lock.insert(data, section).to_s
     end
 
     def write

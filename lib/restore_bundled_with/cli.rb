@@ -24,7 +24,7 @@ module RestoreBundledWith
     option :ref, type: :string, default: Repository::REF
     option :git_path, type: :string, default: Repository::GIT_PATH
     option :git_options, type: :hash, default: Repository::GIT_OPTIONS
-    option :new_line, type: :string, default: Lock::NEW_LINE
+    option :new_line, type: :string, default: Repository::NEW_LINE
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
     def restore

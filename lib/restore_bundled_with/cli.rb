@@ -30,7 +30,7 @@ module RestoreBundledWith
     def restore
       setup_logger(options)
 
-      params = options
+      params = options.dup
       params[:file] = options[:lockfile] if !options[:data] && !options[:file]
       data = read_data(params)
       lockfile = Restore.new(

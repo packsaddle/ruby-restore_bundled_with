@@ -9,8 +9,13 @@ Gem::Specification.new do |spec|
   spec.authors       = ['sanemat']
   spec.email         = ['o.gata.ken@gmail.com']
 
-  spec.summary       = 'Restore BUNDLED WITH section on Gemfile.lock'
-  spec.description   = 'Restore BUNDLED WITH section on Gemfile.lock'
+  spec.summary       = \
+    'Restore BUNDLED WITH section in Gemfile.lock from git repository.'
+  spec.description   = <<-'EOS'.gsub("\n") { ' ' }
+We should use latest Bundler,
+but sometimes we are afraid we have to use older Bundler.
+RestoreBundledWith solves these conflicts.
+  EOS
   spec.homepage      = 'https://github.com/packsaddle/ruby-restore_bundled_with'
   spec.license       = 'MIT'
 

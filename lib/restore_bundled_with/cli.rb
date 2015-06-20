@@ -58,7 +58,7 @@ module RestoreBundledWith
       setup_logger(options)
 
       data = read_data(options)
-      puts Delete.new(data).delete
+      puts Lock.new(data).delete_bundled_with
     rescue StandardError => e
       suggest_messages(options)
       raise e

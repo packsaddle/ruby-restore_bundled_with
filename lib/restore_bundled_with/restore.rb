@@ -17,7 +17,7 @@ module RestoreBundledWith
     end
 
     def restore
-      data = Delete.new(@data).delete
+      data = Lock.new(@data).delete_bundled_with.to_s
       section = Fetch
                 .new(
                   @lockfile,

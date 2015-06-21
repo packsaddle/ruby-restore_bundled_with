@@ -111,6 +111,9 @@ $ git diff
 
 There is no diff, because this restores `BUNDLED WITH` from git repository.
 
+## Requirement
+
+* Git
 
 ## Usage
 

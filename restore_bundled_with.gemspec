@@ -40,7 +40,7 @@ RestoreBundledWith solves these conflicts.
   spec.add_runtime_dependency 'thor', '>= 0'
   spec.add_runtime_dependency 'git', '>= 0'
 
-  spec.add_development_dependency 'bundler', '>= 0'
+  spec.add_development_dependency 'bundler', '>= 1.3', '< 2.0'
   spec.add_development_dependency 'rake', '>= 0'
   spec.add_development_dependency 'test-unit', '>= 0'
   spec.add_development_dependency 'test-unit-rr', '>= 0'

@@ -7,7 +7,7 @@ module RestoreBundledWith
         lock_file = File.read('./test/fixtures/v1-9-example1.lock')
         section = ''
         assert do
-          Lock.insert(lock_file, section).to_s == lock_file
+          Lock.insert(lock_file, section) == Lock.new(lock_file)
         end
       end
       test 'v1.10 lock file' do
@@ -15,7 +15,7 @@ module RestoreBundledWith
         section = File.read('./test/fixtures/v1-10-example1-block.txt')
         lock_file = File.read('./test/fixtures/v1-10-example1.lock')
         assert do
-          Lock.insert(deleted, section).to_s == lock_file
+          Lock.insert(deleted, section) == Lock.new(lock_file)
         end
       end
     end

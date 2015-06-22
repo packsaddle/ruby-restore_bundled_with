@@ -52,5 +52,21 @@ module RestoreBundledWith
         end
       end
     end
+
+    sub_test_case '#==' do
+      test 'compare different lock file' do
+        v19 = File.read('./test/fixtures/v1-9-example1.lock')
+        v110 = File.read('./test/fixtures/v1-10-example1.lock')
+        assert do
+          Lock.new(v19) != Lock.new(v110)
+        end
+      end
+      test 'compare same lock file' do
+        v110 = File.read('./test/fixtures/v1-10-example1.lock')
+        assert do
+          Lock.new(v110) == Lock.new(v110)
+        end
+      end
+    end
   end
 end

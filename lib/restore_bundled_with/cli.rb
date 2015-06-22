@@ -41,7 +41,7 @@ module RestoreBundledWith
         options[:git_options],
         options[:new_line]
       )
-      lock_file.write_to(options[:lockfile])
+      File.write(options[:lockfile], lock_file.body)
     rescue StandardError => e
       suggest_messages(options)
       raise e

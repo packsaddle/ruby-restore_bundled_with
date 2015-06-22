@@ -54,9 +54,5 @@ module RestoreBundledWith
     def ==(other)
       body == other.body
     end
-
-    def write_to(path)
-      File.write(path, body)
-    end
   end
 end

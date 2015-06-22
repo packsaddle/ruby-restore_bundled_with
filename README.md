@@ -162,6 +162,10 @@ Or install it yourself as:
 
     $ gem install restore_bundled_with
 
+## Changelog
+
+[CHANGELOG.md](./CHANGELOG.md).
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

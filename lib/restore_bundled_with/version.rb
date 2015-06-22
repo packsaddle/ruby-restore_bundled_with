@@ -1,3 +1,3 @@
 module RestoreBundledWith
-  VERSION = '0.2.1.beta'
+  VERSION = '0.3.0'
 end

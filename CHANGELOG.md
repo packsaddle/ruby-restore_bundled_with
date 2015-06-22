@@ -1,3 +1,12 @@
+<a name"0.3.0"></a>
+## 0.3.0 (2015-06-22)
+
+
+#### Features
+
+* **lock:** use ruby standard library directly ([5c082aac](https://github.com/packsaddle/ruby-restore_bundled_with/commit/5c082aac))
+
+
 <a name"0.2.0"></a>
 ## 0.2.0 (2015-06-21)
 

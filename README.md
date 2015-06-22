@@ -111,6 +111,19 @@ $ git diff
 
 There is no diff, because this restores `BUNDLED WITH` from git repository.
 
+### Call from Ruby script
+
+```ruby
+system(*['bundle', 'update'])
+
+# restore_bundled_with
+lock_file_contents = File.read('Gemfile.lock')
+lock = RestoreBundledWith::Lock.restore(lock_file_contents, 'Gemfile.lock')
+File.write('Gemfile.lock', lock.body)
+```
+
+There is no diff, because this restores `BUNDLED WITH` from git repository.
+
 ## Requirement
 
 * Git

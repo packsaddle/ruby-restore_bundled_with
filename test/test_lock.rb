@@ -62,9 +62,11 @@ module RestoreBundledWith
         end
       end
       test 'compare same lock file' do
-        v110 = v110_2 = File.read('./test/fixtures/v1-10-example1.lock')
+        v110 = File.read('./test/fixtures/v1-10-example1.lock')
+        one = Lock.new(v110)
+        other = Lock.new(v110)
         assert do
-          Lock.new(v110) == Lock.new(v110_2)
+          one == other
         end
       end
     end

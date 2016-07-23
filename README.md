@@ -1,9 +1,8 @@
 # RestoreBundledWith
 
-[![Gem Version](http://img.shields.io/gem/v/restore_bundled_with.svg?style=flat)](http://badge.fury.io/rb/restore_bundled_with)
-[![Build Status](http://img.shields.io/travis/packsaddle/ruby-restore_bundled_with/master.svg?style=flat)](https://travis-ci.org/packsaddle/ruby-restore_bundled_with)
+[![Gem version][gem-image]][gem-url] [![Travis-CI Status][travis-image]][travis-url] [![yard docs][docs-image]][docs-url]
 
-Restore `BUNDLED WITH` section in `Gemfile.lock` from git repository.
+> Restore `BUNDLED WITH` section in `Gemfile.lock` from git repository.
 
 ```text
 # Gemfile.lock
@@ -194,3 +193,9 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/packsa
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
+[travis-url]: https://travis-ci.org/packsaddle/ruby-restore_bundled_with
+[travis-image]: https://img.shields.io/travis/packsaddle/ruby-restore_bundled_with/master.svg?style=flat-square&label=build%20%28linux%29
+[gem-url]: https://rubygems.org/gems/restore_bundled_with
+[gem-image]: http://img.shields.io/gem/v/restore_bundled_with.svg?style=flat-square
+[docs-url]: http://www.rubydoc.info/gems/restore_bundled_with
+[docs-image]: https://img.shields.io/badge/yard-docs-blue.svg?style=flat-square

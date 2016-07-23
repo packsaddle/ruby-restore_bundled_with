@@ -6,3 +6,4 @@ gemspec
 gem 'rubocop'
 gem 'byebug' if RUBY_VERSION >= '2.0.0'
 gem 'parse_gemspec-cli'
+gem 'yard'

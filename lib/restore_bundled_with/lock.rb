@@ -1,9 +1,16 @@
 module RestoreBundledWith
+  # The lock file
   class Lock
     attr_reader :body
+    # @!attribute [r] body
+    #   @return [String] file body
 
     REGEX_BUNDLED_WITH = /^(?<pick>(?:\r\n|\r|\n)^BUNDLED WITH.*(?:\r\n|\r|\n).+(?:\r\n|\r|\n))/
 
+    # @param text [String] base lock file
+    # @param section [String] appending section
+    #
+    # @return [Lock] the lock file instance
     def self.insert(text, section)
       if section && !section.empty?
         new(text + section)
@@ -12,6 +19,14 @@ module RestoreBundledWith
       end
     end
 
+    # @param data [String] before restore
+    # @param lockfile [String] file name
+    # @param ref [String] git ref
+    # @param git_path [String] git repository path
+    # @param git_options [Hash] ruby-git options
+    # @param new_line [String] new line
+    #
+    # @return [Lock] the lock file instance
     def self.restore(
       data,
       lockfile = Repository::LOCK_FILE,
@@ -29,15 +44,22 @@ module RestoreBundledWith
       insert(trimmed.body, section)
     end
 
+    # @param text [String] the lock file contents
+    #
+    # @return [Lock] the lock file instance
     def initialize(text)
       @body = text
     end
 
-    # "\n\nBUNDLED WITH\n   1.10.4\n" => "\n"
+    # @example delete bundled with
+    #   "\n\nBUNDLED WITH\n   1.10.4\n" => "\n"
+    #
+    # @return [Lock] new lock file instance which is deleted bundled with
     def delete_bundled_with
       self.class.new(body.sub(REGEX_BUNDLED_WITH) { '' })
     end
 
+    # @return [String] pick target section
     def pick
       match = REGEX_BUNDLED_WITH.match(body)
       if match
@@ -47,10 +69,14 @@ module RestoreBundledWith
       end
     end
 
+    # @return [String] the lock file contents
     def to_s
       body
     end
 
+    # @param [#body] other compare body
+    #
+    # @return [Boolean] true if file body is same
     def ==(other)
       body == other.body
     end

@@ -1,6 +1,6 @@
 module RestoreFromRepository
   class Repository
-    LOCK_FILE = 'Gemfile.lock'
+    TARGET_FILE = 'Gemfile.lock'
     REF = 'HEAD'
     GIT_PATH = '.'
     GIT_OPTIONS = {}
@@ -15,7 +15,7 @@ module RestoreFromRepository
       @git ||= Git.open(@git_path, @git_options)
     end
 
-    def fetch_file(file = LOCK_FILE, ref = REF, new_line = NEW_LINE)
+    def fetch_file(file = TARGET_FILE, ref = REF, new_line = NEW_LINE)
       # NOTE: git.cat_file trims last \n?
       text = git.cat_file("#{ref}:#{file}")
       text + new_line

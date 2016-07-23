@@ -1,3 +1,9 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/packsaddle/ruby-restore_bundled_with/compare/v0.3.0...v1.0.0) (2016-07-23)
+
+* Ship v1.0.0!
+
+
 <a name"0.3.0"></a>
 ## 0.3.0 (2015-06-22)
 

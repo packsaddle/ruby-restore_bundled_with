@@ -1,6 +1,6 @@
 module RestoreFromRepository
   # The lock file
-  class File
+  class TargetFile
     attr_reader :body
     # @!attribute [r] body
     #   @return [String] file body
@@ -10,7 +10,7 @@ module RestoreFromRepository
     # @param text [String] base lock file
     # @param section [String] appending section
     #
-    # @return [Lock] the lock file instance
+    # @return [TargetFile] the lock file instance
     def self.insert(text, section)
       if section && !section.empty?
         new(text + section)
@@ -26,7 +26,7 @@ module RestoreFromRepository
     # @param git_options [Hash] ruby-git options
     # @param new_line [String] new line
     #
-    # @return [Lock] the lock file instance
+    # @return [TargetFile] the lock file instance
     def self.restore(
       data,
       lockfile,
@@ -48,7 +48,7 @@ module RestoreFromRepository
 
     # @param text [String] the lock file contents
     #
-    # @return [Lock] the lock file instance
+    # @return [TargetFile] the lock file instance
     def initialize(text)
       @body = text
     end
@@ -56,7 +56,7 @@ module RestoreFromRepository
     # @example delete bundled with
     #   "\n\nBUNDLED WITH\n   1.10.4\n" => "\n"
     #
-    # @return [Lock] new lock file instance which is deleted bundled with
+    # @return [TargetFile] new lock file instance which is deleted bundled with
     def delete_bundled_with
       self.class.new(body.sub(REGEX_BUNDLED_WITH) { '' })
     end

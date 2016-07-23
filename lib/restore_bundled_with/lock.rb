@@ -1,6 +1,6 @@
 module RestoreBundledWith
   # The lock file
-  class Lock < RestoreFromRepository::File
+  class Lock < RestoreFromRepository::TargetFile
     REGEX_BUNDLED_WITH = /^(?<pick>(?:\r\n|\r|\n)^BUNDLED WITH.*(?:\r\n|\r|\n).+(?:\r\n|\r|\n))/
 
     # @param text [String] base lock file

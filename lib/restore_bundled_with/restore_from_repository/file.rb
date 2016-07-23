@@ -29,12 +29,14 @@ module RestoreFromRepository
     # @return [Lock] the lock file instance
     def self.restore(
       data,
-      lockfile = Repository::LOCK_FILE,
+      lockfile,
       ref = Repository::REF,
       git_path = Repository::GIT_PATH,
       git_options = Repository::GIT_OPTIONS,
       new_line = Repository::NEW_LINE
     )
+      raise TypeError if lockfile.nil?
+
       trimmed = new(data).delete_bundled_with
       lock_file_data = Repository
                        .new(git_path, git_options)

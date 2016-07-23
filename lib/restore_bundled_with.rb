@@ -7,7 +7,7 @@ require 'restore_bundled_with/repository'
 require 'restore_bundled_with/version'
 
 module RestoreBundledWith
-  ISSUE_URL = 'https://github.com/packsaddle/ruby-restore_bundled_with/issues/new'
+  ISSUE_URL = 'https://github.com/packsaddle/ruby-restore_bundled_with/issues/new'.freeze
   def self.default_logger
     logger = Logger.new(STDERR)
     logger.progname = "RestoreBundledWith #{VERSION}"

@@ -78,7 +78,8 @@ module RestoreBundledWith
                   .fetch_file(
                     options[:lockfile],
                     options[:ref],
-                    options[:new_line])
+                    options[:new_line]
+                  )
       puts Lock
         .new(lock_file)
         .pick
@@ -101,7 +102,7 @@ module RestoreBundledWith
 
         logger.info('input data')
         logger.info(data)
-        fail NoInputError if !data || data.empty?
+        raise NoInputError if !data || data.empty?
 
         data
       end

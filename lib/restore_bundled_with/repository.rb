@@ -1,10 +1,10 @@
 module RestoreBundledWith
   class Repository
-    LOCK_FILE = 'Gemfile.lock'
-    REF = 'HEAD'
-    GIT_PATH = '.'
-    GIT_OPTIONS = {}
-    NEW_LINE = "\n"
+    LOCK_FILE = 'Gemfile.lock'.freeze
+    REF = 'HEAD'.freeze
+    GIT_PATH = '.'.freeze
+    GIT_OPTIONS = {}.freeze
+    NEW_LINE = "\n".freeze
 
     def initialize(git_path = GIT_PATH, git_options = GIT_OPTIONS)
       @git_path = git_path

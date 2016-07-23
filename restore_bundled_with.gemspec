@@ -21,9 +21,9 @@ RestoreBundledWith solves these conflicts.
 
   spec.files         = \
     `git ls-files -z`
-      .split("\x0")
-      .reject { |f| f.match(%r{^(test|spec|features)/}) }
-      .reject do |f|
+    .split("\x0")
+    .reject { |f| f.match(%r{^(test|spec|features)/}) }
+    .reject do |f|
       [
         '.rubocop.yml',
         '.rubocop_todo.yml',

@@ -1,6 +1,10 @@
-module RestoreBundledWith
+module RestoreFromRepository
   # The lock file
-  class Lock < RestoreFromRepository::File
+  class File
+    attr_reader :body
+    # @!attribute [r] body
+    #   @return [String] file body
+
     REGEX_BUNDLED_WITH = /^(?<pick>(?:\r\n|\r|\n)^BUNDLED WITH.*(?:\r\n|\r|\n).+(?:\r\n|\r|\n))/
 
     # @param text [String] base lock file
@@ -40,6 +44,13 @@ module RestoreBundledWith
       insert(trimmed.body, section)
     end
 
+    # @param text [String] the lock file contents
+    #
+    # @return [Lock] the lock file instance
+    def initialize(text)
+      @body = text
+    end
+
     # @example delete bundled with
     #   "\n\nBUNDLED WITH\n   1.10.4\n" => "\n"
     #
@@ -56,6 +67,18 @@ module RestoreBundledWith
       else
         ''
       end
+    end
+
+    # @return [String] the lock file contents
+    def to_s
+      body
+    end
+
+    # @param [#body] other compare body
+    #
+    # @return [Boolean] true if file body is same
+    def ==(other)
+      body == other.body
     end
   end
 end

@@ -1,25 +1,7 @@
 module RestoreBundledWith
   # The git repository
-  class Repository
+  class Repository < RestoreFromRepository::Repository
     LOCK_FILE = 'Gemfile.lock'.freeze
-    REF = 'HEAD'.freeze
-    GIT_PATH = '.'.freeze
-    GIT_OPTIONS = {}.freeze
-    NEW_LINE = "\n".freeze
-
-    # @param git_path [String] git repository path
-    # @param git_options [Hash] ruby-git options
-    #
-    # @return [Repository] Repository instance
-    def initialize(git_path = GIT_PATH, git_options = GIT_OPTIONS)
-      @git_path = git_path
-      @git_options = git_options
-    end
-
-    # @return [Git::Base] ruby-git object
-    def git
-      @git ||= Git.open(@git_path, @git_options)
-    end
 
     # @param file [String] target file
     # @param ref [String] git ref

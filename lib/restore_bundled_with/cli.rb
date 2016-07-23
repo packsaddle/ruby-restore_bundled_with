@@ -20,7 +20,7 @@ module RestoreBundledWith
     desc 'restore', 'Restore BUNDLED WITH section in Gemfile.lock'
     option :data
     option :file
-    option :lockfile, type: :string, default: Repository::LOCK_FILE
+    option :lockfile, type: :string, default: Lock::FILE_NAME
     option :ref, type: :string, default: Repository::REF
     option :git_path, type: :string, default: Repository::GIT_PATH
     option :git_options, type: :hash, default: Repository::GIT_OPTIONS
@@ -64,7 +64,7 @@ module RestoreBundledWith
     end
 
     desc 'fetch', 'Fetch BUNDLED WITH section'
-    option :lockfile, type: :string, default: Repository::LOCK_FILE
+    option :lockfile, type: :string, default: Lock::FILE_NAME
     option :ref, type: :string, default: Repository::REF
     option :git_path, type: :string, default: Repository::GIT_PATH
     option :git_options, type: :hash, default: Repository::GIT_OPTIONS

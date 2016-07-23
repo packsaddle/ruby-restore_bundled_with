@@ -6,6 +6,7 @@ module RestoreFromRepository
     #   @return [String] file body
 
     REGEX_BUNDLED_WITH = /^(?<pick>(?:\r\n|\r|\n)^BUNDLED WITH.*(?:\r\n|\r|\n).+(?:\r\n|\r|\n))/
+    FILE_NAME = 'Gemfile.lock'
 
     # @param text [String] base target file
     # @param section [String] appending section
@@ -29,7 +30,7 @@ module RestoreFromRepository
     # @return [TargetFile] the target file instance
     def self.restore(
       data,
-      target_file,
+      target_file = FILE_NAME,
       ref = Repository::REF,
       git_path = Repository::GIT_PATH,
       git_options = Repository::GIT_OPTIONS,

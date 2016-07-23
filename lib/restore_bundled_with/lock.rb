@@ -2,6 +2,7 @@ module RestoreBundledWith
   # The lock file
   class Lock < RestoreFromRepository::TargetFile
     REGEX_BUNDLED_WITH = /^(?<pick>(?:\r\n|\r|\n)^BUNDLED WITH.*(?:\r\n|\r|\n).+(?:\r\n|\r|\n))/
+    FILE_NAME = 'Gemfile.lock'.freeze
 
     # @param text [String] base lock file
     # @param section [String] appending section
@@ -25,7 +26,7 @@ module RestoreBundledWith
     # @return [Lock] the lock file instance
     def self.restore(
       data,
-      lockfile = Repository::LOCK_FILE,
+      lockfile = FILE_NAME,
       ref = Repository::REF,
       git_path = Repository::GIT_PATH,
       git_options = Repository::GIT_OPTIONS,

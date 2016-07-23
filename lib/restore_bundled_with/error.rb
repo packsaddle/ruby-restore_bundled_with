@@ -1,3 +1,3 @@
 module RestoreBundledWith
-  class NoInputError < StandardError; end
+  class NoInputError < ::RestoreFromRepository::NoInputError; end
 end

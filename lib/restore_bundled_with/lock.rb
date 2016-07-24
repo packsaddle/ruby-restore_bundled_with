@@ -22,6 +22,7 @@ module RestoreBundledWith
     # @param git_path [String] git repository path
     # @param git_options [Hash] ruby-git options
     # @param new_line [String] new line
+    # @param pattern [Regexp] match pattern
     #
     # @return [Lock] the lock file instance
     def self.restore(
@@ -30,15 +31,10 @@ module RestoreBundledWith
       ref = Repository::REF,
       git_path = Repository::GIT_PATH,
       git_options = Repository::GIT_OPTIONS,
-      new_line = Repository::NEW_LINE
+      new_line = Repository::NEW_LINE,
+      pattern = REGEX_BUNDLED_WITH
     )
-      trimmed = new(data).delete_by_pattern(REGEX_BUNDLED_WITH)
-      lock_file_data = Repository
-                       .new(git_path, git_options)
-                       .fetch_file(lockfile, ref, new_line)
-      section = new(lock_file_data)
-                .pick_by_pattern(REGEX_BUNDLED_WITH)
-      insert(trimmed.body, section)
+      super(data, lockfile, ref, git_path, git_options, new_line, pattern)
     end
 
     # @example delete bundled with

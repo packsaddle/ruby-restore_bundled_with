@@ -26,6 +26,7 @@ module RestoreFromRepository
     # @param git_path [String] git repository path
     # @param git_options [Hash] ruby-git options
     # @param new_line [String] new line
+    # @param pattern [Regexp] match pattern
     #
     # @return [TargetFile] the target file instance
     def self.restore(
@@ -34,16 +35,17 @@ module RestoreFromRepository
       ref = Repository::REF,
       git_path = Repository::GIT_PATH,
       git_options = Repository::GIT_OPTIONS,
-      new_line = Repository::NEW_LINE
+      new_line = Repository::NEW_LINE,
+      pattern = REGEX_BUNDLED_WITH
     )
       raise TypeError if target_file.nil?
 
-      trimmed = new(data).delete_by_pattern(REGEX_BUNDLED_WITH)
+      trimmed = new(data).delete_by_pattern(pattern)
       target_file_data = Repository
                        .new(git_path, git_options)
                        .fetch_file(target_file, ref, new_line)
       section = new(target_file_data)
-                .pick_by_pattern(REGEX_BUNDLED_WITH)
+                .pick_by_pattern(pattern)
       insert(trimmed.body, section)
     end
 

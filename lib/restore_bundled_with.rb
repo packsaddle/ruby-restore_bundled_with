@@ -1,7 +1,7 @@
 require 'git'
 require 'logger'
+require 'restore_from_repository'
 
-require 'restore_bundled_with/restore_from_repository'
 require 'restore_bundled_with/error'
 require 'restore_bundled_with/lock'
 require 'restore_bundled_with/repository'

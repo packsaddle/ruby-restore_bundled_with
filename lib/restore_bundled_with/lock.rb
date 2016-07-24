@@ -32,12 +32,12 @@ module RestoreBundledWith
       git_options = Repository::GIT_OPTIONS,
       new_line = Repository::NEW_LINE
     )
-      trimmed = new(data).delete_bundled_with
+      trimmed = new(data).delete_by_pattern(REGEX_BUNDLED_WITH)
       lock_file_data = Repository
                        .new(git_path, git_options)
                        .fetch_file(lockfile, ref, new_line)
       section = new(lock_file_data)
-                .pick
+                .pick_by_pattern(REGEX_BUNDLED_WITH)
       insert(trimmed.body, section)
     end
 
@@ -51,12 +51,7 @@ module RestoreBundledWith
 
     # @return [String] pick target section
     def pick
-      match = REGEX_BUNDLED_WITH.match(body)
-      if match
-        match[:pick]
-      else
-        ''
-      end
+      pick_by_pattern(REGEX_BUNDLED_WITH)
     end
   end
 end

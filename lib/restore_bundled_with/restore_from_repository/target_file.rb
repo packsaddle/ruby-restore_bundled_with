@@ -43,7 +43,7 @@ module RestoreFromRepository
                        .new(git_path, git_options)
                        .fetch_file(target_file, ref, new_line)
       section = new(target_file_data)
-                .pick
+                .pick_by_pattern(REGEX_BUNDLED_WITH)
       insert(trimmed.body, section)
     end
 
@@ -61,9 +61,11 @@ module RestoreFromRepository
       self.class.new(body.sub(pattern) { '' })
     end
 
-    # @return [String] pick target section
-    def pick
-      match = REGEX_BUNDLED_WITH.match(body)
+    # @param pattern [Regexp] match pattern
+    #
+    # @return [String] picked section
+    def pick_by_pattern(pattern)
+      match = pattern.match(body)
       if match
         match[:pick]
       else

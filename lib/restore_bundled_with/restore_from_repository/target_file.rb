@@ -6,7 +6,7 @@ module RestoreFromRepository
     #   @return [String] file body
 
     REGEX_BUNDLED_WITH = /^(?<pick>(?:\r\n|\r|\n)^BUNDLED WITH.*(?:\r\n|\r|\n).+(?:\r\n|\r|\n))/
-    FILE_NAME = 'Gemfile.lock'
+    FILE_NAME = 'Gemfile.lock'.freeze
 
     # @param text [String] base target file
     # @param section [String] appending section
@@ -42,8 +42,8 @@ module RestoreFromRepository
 
       trimmed = new(data).delete_by_pattern(pattern)
       target_file_data = Repository
-                       .new(git_path, git_options)
-                       .fetch_file(target_file, ref, new_line)
+                         .new(git_path, git_options)
+                         .fetch_file(target_file, ref, new_line)
       section = new(target_file_data)
                 .pick_by_pattern(pattern)
       insert(trimmed.body, section)

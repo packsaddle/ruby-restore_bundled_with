@@ -22,21 +22,21 @@ module RestoreFromRepository
 
     # @param data [String] before restore
     # @param target_file [String] file name
+    # @param pattern [Regexp] match pattern
     # @param ref [String] git ref
     # @param git_path [String] git repository path
     # @param git_options [Hash] ruby-git options
     # @param new_line [String] new line
-    # @param pattern [Regexp] match pattern
     #
     # @return [TargetFile] the target file instance
     def self.restore(
       data,
       target_file = FILE_NAME,
+      pattern = REGEX_BUNDLED_WITH,
       ref = Repository::REF,
       git_path = Repository::GIT_PATH,
       git_options = Repository::GIT_OPTIONS,
-      new_line = Repository::NEW_LINE,
-      pattern = REGEX_BUNDLED_WITH
+      new_line = Repository::NEW_LINE
     )
       raise TypeError if target_file.nil?
 

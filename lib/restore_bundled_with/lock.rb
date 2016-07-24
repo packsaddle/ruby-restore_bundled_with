@@ -34,7 +34,7 @@ module RestoreBundledWith
       new_line = Repository::NEW_LINE,
       pattern = REGEX_BUNDLED_WITH
     )
-      super(data, lockfile, ref, git_path, git_options, new_line, pattern)
+      super(data, lockfile, pattern, ref, git_path, git_options, new_line)
     end
 
     # @example delete bundled with

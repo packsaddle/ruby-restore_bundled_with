@@ -38,7 +38,7 @@ module RestoreFromRepository
     )
       raise TypeError if target_file.nil?
 
-      trimmed = new(data).delete_bundled_with
+      trimmed = new(data).delete_by_pattern(REGEX_BUNDLED_WITH)
       target_file_data = Repository
                        .new(git_path, git_options)
                        .fetch_file(target_file, ref, new_line)
@@ -54,12 +54,11 @@ module RestoreFromRepository
       @body = text
     end
 
-    # @example delete bundled with
-    #   "\n\nBUNDLED WITH\n   1.10.4\n" => "\n"
+    # @param pattern [Regexp, String] match pattern
     #
-    # @return [TargetFile] new target file instance which is deleted bundled with
-    def delete_bundled_with
-      self.class.new(body.sub(REGEX_BUNDLED_WITH) { '' })
+    # @return [TargetFile] new target file instance
+    def delete_by_pattern(pattern)
+      self.class.new(body.sub(pattern) { '' })
     end
 
     # @return [String] pick target section

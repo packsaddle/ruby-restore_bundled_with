@@ -46,7 +46,7 @@ module RestoreBundledWith
     #
     # @return [Lock] new lock file instance which is deleted bundled with
     def delete_bundled_with
-      self.class.new(body.sub(REGEX_BUNDLED_WITH) { '' })
+      delete_by_pattern(REGEX_BUNDLED_WITH)
     end
 
     # @return [String] pick target section
